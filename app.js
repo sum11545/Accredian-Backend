@@ -3,6 +3,7 @@ const { PrismaClient } = require("@prisma/client");
 const { validationResult } = require("express-validator");
 const { refferalValidator } = require("./validation");
 const SibApiV3Sdk = require("sib-api-v3-sdk");
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
@@ -16,6 +17,7 @@ prisma
   .catch((err) => console.error("❌ Database Connection Error:", err));
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
